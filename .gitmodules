@@ -1,0 +1,3 @@
+[submodule "x86_64/uefi/libefi"]
+	path = x86_64/uefi/libefi
+	url = https://github.com/aurixos/efi
