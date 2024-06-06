@@ -1,0 +1,58 @@
+/*++
+Module Name:  com.h
+Project:      AurixOS
+
+Copyright (c) 2024 Jozef Nagy
+
+This source is subject to the MIT License.
+See License.txt in the root of this repository.
+All other rights reserved.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+--*/
+
+#ifndef _COM_H
+#define _COM_H
+
+typedef struct _COM_PORT {
+	UINT8 Index;
+	UINT32 BaudRate;
+	BOOLEAN IsInitialized;
+} COM_PORT, *PCOM_PORT;
+
+enum {
+	COM1 = 0x3f8,
+	COM2 = 0x2f8,
+	COM3 = 0x3e8,
+	COM4 = 0x2e8,
+	COM5 = 0x5f8,
+	COM6 = 0x4f8,
+	COM7 = 0x5e8,
+	COM8 = 0x4e8
+};
+
+AXBOOT_STATUS
+ComInitializeCom(
+	UINT16 ComPort,
+	UINT32 BaudRate);
+
+CHAR
+ComReadChar(
+	UINT16 Port);
+
+void
+ComWriteChar(
+	UINT16 Port,
+	CHAR Byte);
+
+VOID
+ComOutputDebugString(
+	CHAR16 *String);
+
+#endif /* _COM_H */
